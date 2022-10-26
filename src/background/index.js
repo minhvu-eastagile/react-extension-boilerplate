@@ -1,13 +1,15 @@
-/* eslint-disable no-undef */
-console.log('Background.js file loaded');
+import { Connection, clusterApiUrl, PublicKey } from '@_koi/web3.js';
 
-/* const defaultUninstallURL = () => {
-  return process.env.NODE_ENV === 'production'
-    ? 'https://wwww.github.com/kryptokinght'
-    : '';
-}; */
+const testK2SDK = async () => {
+  try {
+    const connection = new Connection(clusterApiUrl('testnet'));
+    const publicKey = new PublicKey('6J9ZnwQnZGYV3Uyk6wq1XCJfSvgLXqxrM5fd8SBdGNac');
+    const balance = await connection.getBalance(publicKey);
+  
+    console.log('balance', balance);
+  } catch (err) {
+    console.error(err);
+  }
+};
 
-browser.runtime.onMessage.addListener(function (message) {
-  console.log(message);
-});
-
+testK2SDK();
